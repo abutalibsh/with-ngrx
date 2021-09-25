@@ -19,17 +19,17 @@ const authReducer = createReducer(
             validationErrors : null
         })),
     on(registerSuccessAction,
-        (state, returnedUser) : AuthStateInterface => ({
+        (state, action) : AuthStateInterface => ({
             ...state,
             isSubmitting : false,
             isLoggedIn : true,
-            currentUser : returnedUser            
+            currentUser : action.currentUser
         })),
     on(registerFailureAction,
-        (state,{type,...errors}) : AuthStateInterface => ({
+        (state,action) : AuthStateInterface => ({
             ...state,
             isSubmitting : false,
-            validationErrors : errors
+            validationErrors : action.backendErrors
         }))
 );
 

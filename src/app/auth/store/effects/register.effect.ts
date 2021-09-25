@@ -16,23 +16,8 @@ export class RegisterEffect {
   //all possibly dispatched actions
   constructor(private actions$ : Actions, private service : AuthService, private persistanceService : PersistanceService, private router : Router) { }
 
-  // register$ = createEffect(() => this.actions$.pipe(
-  //   //listen on specific types of actions
-  //   ofType(registerAction),
-  //   //convert the action payload into another action
-  //   switchMap((request) => {
-  //     return this.service.register(request).pipe(
-  //       //if success
-  //       map((currentUser) => {return registerSuccessAction(currentUser)}),
-  //       //if failed
-  //       catchError(() => {return of(registerFailureAction())})
-  //       );
-  //     })
-  //   )
-  //   );
-
       //action<Request> --> Action<User>
-      requestToAction = (request : RegisterRequestInterface) => {
+      requestToAction = ({request}) => {
         return this.service.register(request).pipe(
           //if success
           map(this.userToAction),
@@ -43,7 +28,7 @@ export class RegisterEffect {
   
       userToAction = (currentUser: CurrentUserInterface) => {
         this.persistanceService.set('accessToken',currentUser.token);
-        return registerSuccessAction(currentUser)
+        return registerSuccessAction({currentUser})
       };
   
       catchFailure = (errorResponse : HttpErrorResponse) => {return of(registerFailureAction(errorResponse.error.errors))}

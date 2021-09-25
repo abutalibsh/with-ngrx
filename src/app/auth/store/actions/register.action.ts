@@ -7,15 +7,15 @@ import { BackendErrorsInterface } from '../../../shared/types/backend-errors.int
 
 export const registerAction = createAction(
     ActionTypes.REGISTER,
-  props<RegisterRequestInterface>()
+  props<{request : RegisterRequestInterface}>()
 );
 
 export const registerSuccessAction = createAction(
     ActionTypes.REGISTER_SUCCESS,
-    props<CurrentUserInterface>()
+    props<{currentUser : CurrentUserInterface}>()
 );
 
 export const registerFailureAction = createAction(
     ActionTypes.REGISTER_FAILURE,
-    props<BackendErrorsInterface>()
+    props<{backendErrors : BackendErrorsInterface}>()
 );
