@@ -1,0 +1,35 @@
+<div class="auth-page">
+  <div class="container page">
+    <div class="row">
+      <div class="col-md-6 offset-md-3 col-xs-12">
+        <h1 class="text-xs-center">Sign in</h1>
+        <p class="text-xs-center">
+          <a [routerLink]="['/register']">Need an account?</a>
+        </p>
+        <mg-backend-error-messages
+          *ngIf="backendErrors$ | async"
+          [backendErrors]="backendErrors$ | async"
+        >
+        </mg-backend-error-messages>
+
+        <form novalidate="" class="ng-untouched ng-pristine ng-invalid" [formGroup]="form" (ngSubmit)="submitMyForm()">
+          <fieldset>            
+            <fieldset class="form-group">
+              <input class="form-control form-control-lg ng-untouched ng-pristine ng-invalid" formControlName="email" placeholder="Email" type="text"/>
+            </fieldset>
+            <fieldset class="form-group">
+              <input class="form-control form-control-lg ng-untouched ng-pristine ng-invalid" formControlName="password" placeholder="Password" type="password"/>
+            </fieldset>
+            <button
+              class="btn btn-lg btn-primary pull-xs-right"
+              type="submit"
+              [disabled] = "isSubmitting$ | async"
+            >
+              Sign in
+            </button>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

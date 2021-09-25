@@ -3,16 +3,20 @@ import { NgModule } from "@angular/core";
 import { RouterModule,Routes } from "@angular/router";
 import { ReactiveFormsModule } from "@angular/forms";
 import { StoreModule } from "@ngrx/store";
+import { EffectsModule } from "@ngrx/effects";
 
-import { RegisterComponent } from "src/app/auth/components/register.component";
+import { RegisterComponent } from "src/app/auth/components/register/register.component";
 import { reducers } from "src/app/auth/store/reducers";
 import { AuthService } from "src/app/auth/service/auth.service";
-import { EffectsModule } from "@ngrx/effects";
 import { RegisterEffect } from "src/app/auth/store/effects/register.effect";
-import { BackendErrorMessagesModule } from "../shared/modules/backendErrorMessages/backendErrorMessages.module";
-import { PersistanceService } from "../shared/services/persistance.service";
+import { BackendErrorMessagesModule } from "src/app/shared/modules/backendErrorMessages/backendErrorMessages.module";
+import { PersistanceService } from "src/app/shared/services/persistance.service";
+import { LoginComponent } from 'src/app/auth/components/login/login.component';
 
-const routes: Routes = [{path: 'register', component : RegisterComponent}];
+const routes: Routes = [
+    {path: 'register', component : RegisterComponent},
+    {path: 'login', component : LoginComponent}
+];
 
 @NgModule({
     imports : [CommonModule, 
@@ -22,7 +26,7 @@ const routes: Routes = [{path: 'register', component : RegisterComponent}];
                EffectsModule.forFeature([RegisterEffect]),
                BackendErrorMessagesModule
             ],
-    declarations : [RegisterComponent],
+    declarations : [RegisterComponent, LoginComponent],
     providers : [AuthService, PersistanceService]
 })
 export class AuthModule{

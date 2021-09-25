@@ -5,9 +5,8 @@ import { Observable } from "rxjs";
 
 import { registerAction } from "src/app/auth/store/actions/register.action";
 import { isSubmittingSelector, validationErrorsSelector } from "src/app/auth/store/selectors";
-import { RegisterRequestInterface } from "../types/registerRequest.interface";
-import { BackendErrorsInterface } from "../../shared/types/backend-errors.interface";
-import { filter, map } from "rxjs/operators";
+import { RegisterRequestInterface } from "src/app/auth/types/registerRequest.interface";
+import { BackendErrorsInterface } from "src/app/shared/types/backend-errors.interface";
 
 @Component({
     selector : 'mg-register',
@@ -35,11 +34,6 @@ export class RegisterComponent implements OnInit{
     initializeValues(): void{
         this.isSubmitting$ = this.store.pipe(select(isSubmittingSelector))
         this.backendErrors$ = this.store.pipe(select(validationErrorsSelector), 
-        // map(err => {
-        //     if(!err) return err;
-        //     const {type,...errors} = err;
-        //     return errors;
-        // })
         )
     }
 
@@ -53,7 +47,7 @@ export class RegisterComponent implements OnInit{
         const request : RegisterRequestInterface = {
             user : this.form.value
         }
-        this.store.dispatch(registerAction(request));        
+        this.store.dispatch(registerAction({request}));
     }
 
 }
