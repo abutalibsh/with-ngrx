@@ -1,0 +1,39 @@
+<nav class="navbar navbar-light">
+  <div class="container">
+    <a class="navbar-brand" [routerLink]="['/']">conduit</a>
+    <ul class="nav navbar-nav pull-xs-right">
+      <li class="nav-item">
+        <a
+          class="nav-link active"
+          [routerLink]="['/']"
+          routerlinkactive="active"
+          >Home</a
+        >
+      </li>
+      <li *ngIf="isLoggedIn$ | async" class="nav-item">
+        <a class="nav-link" [routerLink]="['editor']" routerlinkactive="active"
+          ><i class="ion-compose"></i>&nbsp;New Article</a
+        >
+      </li>
+      <li *ngIf="isLoggedIn$ | async" class="nav-item">
+        <a
+          class="nav-link"
+          [routerLink]="['settings']"
+          routerlinkactive="active"
+          ><i class="ion-gear-a"></i>&nbsp;Settings</a>
+      </li>
+      <li *ngIf="isLoggedIn$ | async" class="nav-item">
+        <a class="nav-link" [routerLink]="['/profile','(currentUser$ | async).username']" routerlinkactive="active">
+            <img class="user-pic" [src]="(currentUser$ | async).image">
+            {{(currentUser$ | async).username}}
+        </a>
+      </li>
+      <li *ngIf="!(isLoggedIn$ | async)" class="nav-item">
+        <a class="nav-link" [routerLink]="['/login']" routerlinkactive="active">Sign in</a>
+      </li>
+      <li *ngIf="!(isLoggedIn$ | async)" class="nav-item">
+        <a class="nav-link" [routerLink]="['/register']" routerlinkactive="active">Sign up</a>
+      </li>
+    </ul>
+  </div>
+</nav>
