@@ -6,7 +6,7 @@ import { BackendErrorsInterface } from 'src/app/shared/types/backend-errors.inte
 import { AuthService } from 'src/app/auth/service/auth.service';
 import { isSubmittingSelector, validationErrorsSelector } from 'src/app/auth/store/selectors';
 import { LoginRequestInterface } from 'src/app/auth/types/loginRequest.interface';
-import { loginAction } from 'src/app/auth/store/actions/register.action';
+import { loginAction } from 'src/app/auth/store/actions/login.action';
 
 @Component({
   selector: 'app-login',
