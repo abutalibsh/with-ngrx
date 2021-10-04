@@ -9,7 +9,7 @@ import { LoginRequestInterface } from 'src/app/auth/types/loginRequest.interface
 import { loginAction } from 'src/app/auth/store/actions/login.action';
 
 @Component({
-  selector: 'app-login',
+  selector: 'mg-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
