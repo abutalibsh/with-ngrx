@@ -1,4 +1,5 @@
-import { ArticleInterface } from "../../types/article.interface";
+import { ArticleInterface } from "../../../types/article.interface";
+
 
 export interface GetFeedResponseInterface {
 
