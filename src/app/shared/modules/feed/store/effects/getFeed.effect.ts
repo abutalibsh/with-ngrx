@@ -24,8 +24,8 @@ export class GetFeedEffect {
     }
 
     //action<GetFeedRequest> --> Action<GetFeed>
-    getFeedRequestToAction = () => {
-      return this.service.getFeed('/articles').pipe(
+    getFeedRequestToAction = ({url}) => {
+      return this.service.getFeed(url).pipe(
         //if success
         map(this.successFeedToAction),
         //if failed
