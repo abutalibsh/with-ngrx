@@ -40,7 +40,7 @@ export class GetCurrentUserEffect {
 
 /**
  * Effects
- */s
+ */
 
     getCurrentUser$ = createEffect(() => this.actions$.pipe(
       //listen on specific types of actions
